@@ -341,3 +341,8 @@ config LENOVO_PM_LOG_TLMM
 	def_bool n
 	depends on LENOVO_PM_LOG
 #lenovo.sw chenyb1 20150310 add for pm log end
+
+config	BOEFFLA_WL_BLOCKER
+		bool "Boeffla generic wakelock blocker driver"
+		depends on PM
+		default N
