@@ -19,7 +19,8 @@ defconfig=p2a42-fk_defconfig
 # Dirs
 KERNEL_DIR=~/android/kernel/lenovo/msm8953
 ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel2
-KERNEL_IMG=$KERNEL_DIR/arch/arm64/boot/Image.gz-dtb
+OUT_DIR=$KERNEL_DIR/out
+KERNEL_IMG=$OUT_DIR/arch/arm64/boot/Image.gz-dtb
 UPLOAD_DIR=~/android/kernel/upload/$DEVICE
 
 # Export
@@ -29,17 +30,18 @@ export KBUILD_BUILD_USER="aman"
 export KBUILD_BUILD_HOST="FireLord"
 
 ## Functions ##
+MAKE="make O=${OUT_DIR}"
 
 # Make kernel
 function make_kernel() {
   echo -e "$cyan***********************************************"
   echo -e "          Initializing defconfig          "
   echo -e "***********************************************$nocol"
-  make $defconfig
+  $MAKE $defconfig
   echo -e "$cyan***********************************************"
   echo -e "             Building kernel          "
   echo -e "***********************************************$nocol"
-  make -j10
+  $MAKE -j10
   if ! [ -a $KERNEL_IMG ];
   then
     echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
@@ -50,7 +52,8 @@ function make_kernel() {
 # Making zip
 function make_zip() {
 mkdir -p tmp_mod
-make -j4 modules_install INSTALL_MOD_PATH=tmp_mod INSTALL_MOD_STRIP=1
+$MAKE -j4 modules_install INSTALL_MOD_PATH=tmp_mod INSTALL_MOD_STRIP=1
+cd $OUT_DIR
 find tmp_mod/ -name '*.ko' -type f -exec cp '{}' $ANYKERNEL_DIR/modules/ \;
 cp $KERNEL_IMG $ANYKERNEL_DIR
 mkdir -p $UPLOAD_DIR
@@ -85,8 +88,8 @@ case $ch in
   2) echo -e "$cyan***********************************************"
      echo -e "          	Clean          "
      echo -e "***********************************************$nocol"
-     make clean
-     make mrproper
+     $MAKE clean
+     $MAKE mrproper
      rm -rf tmp_mod
      make_kernel ;;
 esac

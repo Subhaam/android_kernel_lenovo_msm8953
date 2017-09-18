@@ -100,4 +100,4 @@ all.config
 #
 # for flashable zip
 #
-tmp_mod
+out
