@@ -15,6 +15,7 @@ DATE=$(date +"%d-%m-%Y-%I-%M")
 DEVICE="kuntao"
 FINAL_ZIP=$KERNEL_NAME-$VERSION-$DATE-$DEVICE.zip
 defconfig=p2a42-fk_defconfig
+THREAD="$(nproc --all)"
 
 # Dirs
 KERNEL_DIR=~/android/kernel/lenovo/msm8953
@@ -41,7 +42,7 @@ function make_kernel() {
   echo -e "$cyan***********************************************"
   echo -e "             Building kernel          "
   echo -e "***********************************************$nocol"
-  $MAKE -j10
+  $MAKE -j$THREAD
   if ! [ -a $KERNEL_IMG ];
   then
     echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
@@ -52,8 +53,8 @@ function make_kernel() {
 # Making zip
 function make_zip() {
 mkdir -p tmp_mod
-$MAKE -j4 modules_install INSTALL_MOD_PATH=tmp_mod INSTALL_MOD_STRIP=1
 cd $OUT_DIR
+$MAKE -j$THREAD modules_install INSTALL_MOD_PATH=tmp_mod INSTALL_MOD_STRIP=1
 find tmp_mod/ -name '*.ko' -type f -exec cp '{}' $ANYKERNEL_DIR/modules/ \;
 cp $KERNEL_IMG $ANYKERNEL_DIR
 mkdir -p $UPLOAD_DIR
