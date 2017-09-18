@@ -13,7 +13,7 @@ KERNEL_NAME="FireKernel"
 VERSION="v1"
 DATE=$(date +"%d-%m-%Y-%I-%M")
 DEVICE="kuntao"
-FINAL_ZIP=$KERNEL_NAME-$VERSION-$DATE-$DEVICE.zip
+FINAL_ZIP=$KERNEL_NAME-$VERSION-$DEVICE-$DATE.zip
 defconfig=p2a42-fk_defconfig
 THREAD="$(nproc --all)"
 
