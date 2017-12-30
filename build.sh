@@ -18,7 +18,7 @@ defconfig=p2a42-fk_defconfig
 THREAD="$(nproc --all)"
 
 # Dirs
-KERNEL_DIR=~/android/kernel/lenovo/msm8953
+KERNEL_DIR=$(pwd)
 ANYKERNEL_DIR=$KERNEL_DIR/AnyKernel2
 OUT_DIR=$KERNEL_DIR/out
 KERNEL_IMG=$OUT_DIR/arch/arm64/boot/Image.gz-dtb
