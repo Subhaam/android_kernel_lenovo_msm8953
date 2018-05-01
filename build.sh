@@ -9,12 +9,12 @@ red='\033[0;31m'
 nocol='\033[0m'
 
 # Kernel details
-KERNEL_NAME="FireKernel"
-VERSION="v1"
+KERNEL_NAME="MagmaKernel"
+VERSION="creepynuts"
 DATE=$(date +"%d-%m-%Y-%I-%M")
 DEVICE="kuntao"
 FINAL_ZIP=$KERNEL_NAME-$VERSION-$DEVICE-$DATE.zip
-defconfig=p2a42-fk_defconfig
+defconfig=p2a42_defconfig
 THREAD="$(nproc --all)"
 
 # Dirs
@@ -26,9 +26,9 @@ UPLOAD_DIR=~/android/kernel/upload/$DEVICE
 
 # Export
 export ARCH=arm64
-export CROSS_COMPILE=~/android/kernel/toolchain/google-64-4.9/bin/aarch64-linux-android-
-export KBUILD_BUILD_USER="aman"
-export KBUILD_BUILD_HOST="FireLord"
+export CROSS_COMPILE=~/android/kernel/toolchain/aarch64--glibc--bleeding-edge-2018.02-1/bin/aarch64-linux-
+export KBUILD_BUILD_USER="subham"
+export KBUILD_BUILD_HOST="darkbox"
 
 ## Functions ##
 MAKE="make O=${OUT_DIR}"
