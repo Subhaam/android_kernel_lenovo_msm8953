@@ -46,7 +46,6 @@ function make_kernel() {
   if ! [ -a $KERNEL_IMG ];
   then
     echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
-    exit 1
   fi
 }
 
