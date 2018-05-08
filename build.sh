@@ -14,7 +14,7 @@ VERSION="sizzlingnuts"
 DATE=$(date +"%d-%m-%Y-%I-%M")
 DEVICE="kuntao"
 FINAL_ZIP=$KERNEL_NAME-$VERSION-$DEVICE-$DATE.zip
-defconfig=p2a42_defconfig
+defconfig=magma_defconfig
 THREAD="$(nproc --all)"
 
 # Dirs
