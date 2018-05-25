@@ -10,7 +10,7 @@ nocol='\033[0m'
 
 # Kernel details
 KERNEL_NAME="MagmaKernel"
-VERSION="sizzlingnuts"
+VERSION="crankycoconut"
 DATE=$(date +"%d-%m-%Y-%I-%M")
 DEVICE="kuntao"
 FINAL_ZIP=$KERNEL_NAME-$VERSION-$DEVICE-$DATE.zip
