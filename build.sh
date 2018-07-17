@@ -53,8 +53,7 @@ function make_kernel() {
 function make_zip() {
 mkdir -p tmp_mod
 cd $OUT_DIR
-$MAKE -j$THREAD modules_install INSTALL_MOD_PATH=tmp_mod INSTALL_MOD_STRIP=1
-find tmp_mod/ -name '*.ko' -type f -exec cp '{}' $ANYKERNEL_DIR/modules/ \;
+$MAKE -j$THREAD modules_install INSTALL_MOD_PATH=tmp_mod
 cp $KERNEL_IMG $ANYKERNEL_DIR
 mkdir -p $UPLOAD_DIR
 cd $ANYKERNEL_DIR
@@ -109,7 +108,6 @@ fi
 # Clean Up
 function cleanup(){
 rm -rf $ANYKERNEL_DIR/Image.gz-dtb
-rm -rf $ANYKERNEL_DIR/modules/*.ko
 }
 
 options
